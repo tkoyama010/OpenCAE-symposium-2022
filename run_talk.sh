@@ -1,4 +1,10 @@
+# tmpfile1=$(mktemp --suffix=.wav)
+# tmpfile2=$(mktemp --suffix=.wav)
+rm -f talk.wav
+rm -f out.wav
+rm -f out2.wav
 cat index.md | \
+perl -pe "s/^\n//g" | \
 perl -pe "s/この節/このせつ/g" | \
 perl -pe "s/Binder/バインダー/g" | \
 perl -pe "s/CalculiX/カリキュリエックス/g" | \
@@ -45,6 +51,16 @@ perl -pe "s/後者の値/後者のあたい/g" | \
 while read line
 do
     echo $line
-    echo $line | open_jtalk -x /var/lib/mecab/dic/open-jtalk/naist-jdic -m /usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice -ow voice.wav
-    aplay voice.wav
+    echo $line | open_jtalk -x /var/lib/mecab/dic/open-jtalk/naist-jdic -m /usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice -ow out.wav
+    aplay out.wav
+    if [ -e talk.wav ]; then
+        sox talk.wav out.wav out2.wav
+        aplay out2.wav
+        cp out2.wav talk.wav
+        aplay talk.wav
+    else
+        cp out.wav talk.wav
+        aplay talk.wav
+    fi
+    aplay talk.wav
 done
