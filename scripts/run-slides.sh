@@ -1,0 +1,16 @@
+# sleep 10 && byzanz-record --duration=10 ../gifs/slide01.gif
+# sleep 10 && byzanz-record --duration=20 ../gifs/slide02.gif
+# sleep 10 && byzanz-record --duration=50 ../gifs/slide03.gif
+# sleep 10 && byzanz-record --duration=80 ../gifs/slide04.gif
+# sleep 10 && byzanz-record --duration=60 ../gifs/slide05.gif
+# sleep 10 && byzanz-record --duration=60 ../gifs/slide06.gif
+# sleep 10 && byzanz-record --duration=70 ../gifs/slide07.gif
+# sleep 10 && byzanz-record --duration=10 ../gifs/slide08.gif
+# sleep 10 && byzanz-record --duration=20 ../gifs/slide09.gif
+# sleep 10 && byzanz-record --duration=50 ../gifs/slide10.gif
+# sleep 10 && byzanz-record --duration=60 ../gifs/slide11.gif
+# sleep 10 && byzanz-record --duration=10 ../gifs/slide12.gif
+# sleep 10 && byzanz-record --duration=20 ../gifs/slide13.gif
+# sleep 10 && byzanz-record --duration=25 ../gifs/slide14.gif
+# sleep 10 && byzanz-record --duration=30 ../gifs/slide15.gif
+# sleep 10 && byzanz-record --duration=120 ../gifs/slide16.gif

@@ -1,7 +1,9 @@
 tmpfile1=$(mktemp --suffix=.wav)
 tmpfile2=$(mktemp --suffix=.wav)
 rm -f talk.wav
-cat index.md | \
+cat ../index.rst | \
+perl -pe "s/-//g" | \
+perl -pe "s/=//g" | \
 perl -pe "s/Binder/バインダー/g" | \
 perl -pe "s/CalculiX/カリキュリエックス/g" | \
 perl -pe "s/Coarse model/コースモデル/g" | \
@@ -35,10 +37,9 @@ perl -pe "s/Sphinx/スフィンクス/g" | \
 perl -pe "s/The Standard NAFEMS Benchmarks/ザスンタンダードナフェムズベンチマークズ/g" | \
 perl -pe "s/Toolkit/ツールキット/g" | \
 perl -pe "s/Visualization/ビジュアライゼーション/g" | \
-perl -pe "s/^###//g" | \
-perl -pe "s/^##//g" | \
+perl -pe "s/^     //g" | \
 perl -pe "s/^#//g" | \
-perl -pe "s/^- //g" | \
+perl -pe "s/^\.\. //g" | \
 perl -pe "s/^\n//g" | \
 perl -pe "s/issue/イシュー/g" | \
 perl -pe "s/meshio/メッシュアイオー/g" | \
@@ -52,11 +53,11 @@ while read line
 do
     echo $line
     echo $line | open_jtalk -x /var/lib/mecab/dic/open-jtalk/naist-jdic -m /usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice -ow $tmpfile1
-    if [ -e talk.wav ]; then
-        sox talk.wav $tmpfile1 $tmpfile2
-        cp $tmpfile2 talk.wav
+    if [ -e ../talk.wav ]; then
+        sox ../talk.wav $tmpfile1 $tmpfile2
+        cp $tmpfile2 ../talk.wav
     else
-        cp $tmpfile1 talk.wav
+        cp $tmpfile1 ../talk.wav
     fi
 done
-time aplay talk.wav
+time aplay ../talk.wav
