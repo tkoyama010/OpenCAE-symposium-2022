@@ -1,6 +1,8 @@
 tmpfile1=$(mktemp --suffix=.wav)
 tmpfile2=$(mktemp --suffix=.wav)
 rm -f talk.wav
+iscomment=false
+conum=0
 cat ../index.rst | \
 perl -pe "s/-//g" | \
 perl -pe "s/=//g" | \
@@ -37,10 +39,6 @@ perl -pe "s/Sphinx/スフィンクス/g" | \
 perl -pe "s/The Standard NAFEMS Benchmarks/ザスンタンダードナフェムズベンチマークズ/g" | \
 perl -pe "s/Toolkit/ツールキット/g" | \
 perl -pe "s/Visualization/ビジュアライゼーション/g" | \
-perl -pe "s/^     //g" | \
-perl -pe "s/^#//g" | \
-perl -pe "s/^\.\. //g" | \
-perl -pe "s/^\n//g" | \
 perl -pe "s/issue/イシュー/g" | \
 perl -pe "s/meshio/メッシュアイオー/g" | \
 perl -pe "s/pyinstaller/パイインストーラー/g" | \
@@ -51,13 +49,22 @@ perl -pe "s/パイソンic/パイソニック/g" | \
 perl -pe "s/後者の値/後者のあたい/g" | \
 while read line
 do
-    echo $line
-    echo $line | open_jtalk -x /var/lib/mecab/dic/open-jtalk/naist-jdic -m /usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice -ow $tmpfile1
-    if [ -e ../talk.wav ]; then
-        sox ../talk.wav $tmpfile1 $tmpfile2
-        cp $tmpfile2 ../talk.wav
-    else
-        cp $tmpfile1 ../talk.wav
+    if [ "${line:0:3}" == ".. " ]; then
+        conum=`expr $conum + 1`
+	finum=`printf "%03d\n" "${conum}"`
+        iscomment=true
+    elif $iscomment && [ "${line}" == "" ]; then
+        iscomment=false
+        # aplay ../wav/talk${finum}.wav
+    fi
+    if "${iscomment}"; then
+        echo ${line} | perl -pe "s/^\.\. //g"
+        echo ${line} | perl -pe "s/^\.\. //g" | open_jtalk -x /var/lib/mecab/dic/open-jtalk/naist-jdic -m /usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice -ow $tmpfile1
+        if [ -e ../wav/talk${finum}.wav ]; then
+            sox ../wav/talk$finum.wav $tmpfile1 $tmpfile2
+            cp $tmpfile2 ../wav/talk${finum}.wav
+        else
+            cp $tmpfile1 ../wav/talk${finum}.wav
+        fi
     fi
 done
-time aplay ../talk.wav
