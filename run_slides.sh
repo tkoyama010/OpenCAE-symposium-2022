@@ -13,3 +13,4 @@
 # sleep 10 && byzanz-record --duration=20 ./gifs/slide13.gif
 # sleep 10 && byzanz-record --duration=25 ./gifs/slide14.gif
 # sleep 10 && byzanz-record --duration=30 ./gifs/slide15.gif
+# sleep 10 && byzanz-record --duration=120 ./gifs/slide16.gif

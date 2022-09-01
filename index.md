@@ -2,6 +2,8 @@
 
 2022年のオープンCAE関連の活動プロジェクトを
 こちらの表に示します．
+この発表では2022年に活動した
+各プロジェクトについて説明します．
 
 ## PyVistaチュートリアル．
 
@@ -195,29 +197,6 @@ Scilab,
 Matlab)インターフェイスがあり,
 ほとんどすべての機能をスクリプトを書くだけで
 使うことができます．
-
-### ベンチマーク結果
-
-Elliptic Membraneは圧力を負荷された楕円形状に発生する
-応力を確認するベンチマークです．
-The Standard NAFEMS BenchmarksにLE1として掲載されています．
-ベンチマークに使用するメッシュパターンは
-Coarse modelとFine modelの2種類としました．
-使用した要素は1次要素,
-2次要素およびそれらの低減要素です．
-
-Linear elastic solidは圧力を負荷された楕円形状に発生する
-応力を確認するベンチマークです．
-The Standard NAFEMS BenchmarksにLE10として掲載されています．
-ベンチマークに使用するメッシュパターンは
-Coarse modelとFine modelの2種類としました．
-使用した要素は6面体の1次要素,
-2次要素です．
-Coarse modelのメッシュは次の通りです．
-
-Elliptic Membraneは圧力を負荷された楕円形状に発生する
-応力を確認するベンチマークです．
-The Standard NAFEMS BenchmarksにLE1として掲載されています．
 
 ## 書籍出版．
 
