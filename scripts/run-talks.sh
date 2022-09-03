@@ -1,15 +1,16 @@
 tmpfile1=$(mktemp --suffix=.wav)
 tmpfile2=$(mktemp --suffix=.wav)
-rm -f talk.wav
+rm -f ../wav/*.wav
 iscomment=false
 conum=0
 cat ../index.rst | \
 perl -pe "s/-//g" | \
 perl -pe "s/=//g" | \
+perl -pe "s/conpass/コンパス/g" | \
 perl -pe "s/Binder/バインダー/g" | \
 perl -pe "s/CalculiX/カリキュリエックス/g" | \
 perl -pe "s/Coarse model/コースモデル/g" | \
-perl -pe "s/Code-Aster/コードアスター/g" | \
+perl -pe "s/CodeAster/コードアスター/g" | \
 perl -pe "s/Cook membrane/クックメンブレン/g" | \
 perl -pe "s/Discussions/ディスカッション/g" | \
 perl -pe "s/Elliptic Membrane/エリプティクメンブレン/g" | \
@@ -31,7 +32,7 @@ perl -pe "s/Pull Request/プルリクエスト/g" | \
 perl -pe "s/PyVista/パイビスタ/g" | \
 perl -pe "s/Python/パイソン/g" | \
 perl -pe "s/Read The Docs/リードザドックス/g" | \
-perl -pe "s/Salome-Meca/サロメメカ/g" | \
+perl -pe "s/SalomeMeca/サロメメカ/g" | \
 perl -pe "s/Sandia/サンディア/g" | \
 perl -pe "s/SciPy/サイパイ/g" | \
 perl -pe "s/Scilab/サイラボ/g" | \
@@ -42,7 +43,7 @@ perl -pe "s/Visualization/ビジュアライゼーション/g" | \
 perl -pe "s/issue/イシュー/g" | \
 perl -pe "s/meshio/メッシュアイオー/g" | \
 perl -pe "s/pyinstaller/パイインストーラー/g" | \
-perl -pe "s/pyvista.example/パイビスタのイグザンプル/g" | \
+perl -pe "s/pyvista.examples/パイビスタのイグザンプル/g" | \
 perl -pe "s/trimesh/トリメッシュ/g" | \
 perl -pe "s/この節/このせつ/g" | \
 perl -pe "s/パイソンic/パイソニック/g" | \
